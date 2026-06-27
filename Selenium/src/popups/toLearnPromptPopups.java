@@ -1,0 +1,37 @@
+package popups;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class toLearnPromptPopups {
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver =new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.get("https://demoapps.qspiders.com/ui/alert/prompt?sublist=1");
+
+		//clicking on checkboxes
+				List<WebElement>checkboxes=driver.findElements(By.xpath("//input[@type='checkbox']"));
+				for(WebElement ele:checkboxes)
+				{
+					ele.click();
+				}
+				
+				//clicking on delete button
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//button[@id='deleteButton']")).click();
+	
+				//entering the text
+				driver.switchTo().alert().sendKeys("Improve the GUI interface");
+	
+				Thread.sleep(2000);
+				driver.switchTo().alert().accept();
+	}
+}
+	
+	
